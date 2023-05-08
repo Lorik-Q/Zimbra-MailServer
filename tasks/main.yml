@@ -1,2 +1,34 @@
 ---
 # tasks file for zimbra
+
+    - name: update de packages
+      yum:
+        name: '*'
+        state: latest
+       
+    - name: installeer chrony en zet juiste timezone
+      become: yes
+      become_method: sudo
+      yum:
+        name: chrony
+        state: present
+      environment:
+        TZ: "Europe/Brussels"
+      notify: restart chrony
+
+    - name: installeer epel repo
+      yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        state: present
+        disable_gpg_check: yes
+
+    - name: installeer de zimbra installer script
+      get_url:
+        url: https://download.zextras.com/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
+        dest: /root
+
+    - name: pak de zimbra installer script uit
+      unarchive:
+        src: /root/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
+        dest: /root
+        remote_src: yes

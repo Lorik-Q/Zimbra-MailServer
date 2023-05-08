@@ -1,12 +1,12 @@
 Zimbra MailServer installeren
 =========
 
-Deze rol installeert de Open Source v9.0.0 Zimbra MailServer op Rocky Linux 8.
+Deze rol installeert de Open Source Zimbra MailServer v9.0.0 op Rocky Linux 8.
 
 Vereisten
 ------------
 
-Een fresh install Rocky Linux
+Een fresh install Rocky Linux 8
 
 Rol variabelen
 --------------
@@ -25,7 +25,7 @@ License
 
 Gebruik die maar, veel plezier.
 
-Author Information
+Auteur informatie
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Student aan AP Hogeschool Antwerpen, Bachelor Toegepaste informatica | Cyber Security & Cloud Computing
