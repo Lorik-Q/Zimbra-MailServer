@@ -1,2 +1,5 @@
 ---
 # vars file for zimbra
+zimbra_fqdn: mail.test.be
+zimbra_timezone: Europe/Brussels
+zimbra_admin_password: uiopuiop

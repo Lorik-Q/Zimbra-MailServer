@@ -6,7 +6,10 @@ Deze rol installeert de Open Source Zimbra MailServer v9.0.0 op Rocky Linux 8.
 Vereisten
 ------------
 
-Een fresh install Rocky Linux 8
+1. Een fresh install Rocky Linux 8
+2. Minimum 8GB RAM
+3. Minimum 15GB opslag
+4. voeg je domeinnaam en ip address toe in de hosts file
 
 Rol variabelen
 --------------
