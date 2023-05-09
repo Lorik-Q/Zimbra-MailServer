@@ -1,35 +1,49 @@
 ---
 # tasks file for zimbra
 
-    - name: update de packages
-      yum:
-        name: '*'
-        state: latest
-       
-    - name: installeer chrony
-      become: yes
-      yum:
-        name: chrony
-        state: latest
+#    - name: update de packages
+#      yum:
+#        name: '*'
+#        state: latest
+#       
+#    - name: installeer chrony
+#      become: yes
+#      yum:
+#        name: chrony
+#        state: latest
+#
+#    - name: Zet juiste timezone
+#      become: true
+#      command: timedatectl set-timezone {{ timezone }}
 
-    - name: Zet juiste timezone
-      become: true
-      command: timedatectl set-timezone {{ timezone }}
+#    - name: installeer epel repo
+#      yum:
+#        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+#        state: present
+#        disable_gpg_check: yes
 
+#    - name: installeer de zimbra installer script
+#      get_url:
+#        url: https://download.zextras.com/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
+#        dest: /root
 
-    - name: installeer epel repo
-      yum:
-        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-        state: present
-        disable_gpg_check: yes
+#    - name: pak de zimbra installer script uit
+#      unarchive:
+#        src: /root/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
+#        dest: /root
+#        remote_src: yes
 
-    - name: installeer de zimbra installer script
-      get_url:
-        url: https://download.zextras.com/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
-        dest: /root
+#    - name: installeer prereq script
+#      git:
+#        repo: https://github.com/jmutai/scripts.git
+#        dest: /root/scripts
 
-    - name: pak de zimbra installer script uit
-      unarchive:
-        src: /root/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
-        dest: /root
-        remote_src: yes
+    - name: Execute zimbra_install_prereqs_rhel.sh script
+      shell: ./zimbra_install_prereqs_rhel.sh -s < /etc/ansible/roles/zimbra/templates/zimbra_install_prereqs
+      args:
+        chdir: /root/scripts/zimbra/
+
+    - name: Execute zimbra_bind_setup_rhel.sh script
+      shell: ./zimbra_bind_setup_rhel.sh -s < /etc/ansible/roles/zimbra/templates/zimbra_install_setup
+      args:
+        chdir: /root/scripts/zimbra/
