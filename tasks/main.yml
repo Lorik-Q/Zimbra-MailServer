@@ -6,15 +6,16 @@
         name: '*'
         state: latest
        
-    - name: installeer chrony en zet juiste timezone
+    - name: installeer chrony
       become: yes
-      become_method: sudo
       yum:
         name: chrony
-        state: present
-      environment:
-        TZ: "Europe/Brussels"
-      notify: restart chrony
+        state: latest
+
+    - name: Zet juiste timezone
+      become: true
+      command: timedatectl set-timezone {{ timezone }}
+
 
     - name: installeer epel repo
       yum:
