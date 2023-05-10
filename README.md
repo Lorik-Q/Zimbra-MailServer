@@ -19,9 +19,11 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - name: Installeer zimbra mailserver
+      hosts: 192.168.1.21
+      user: root
       roles:
-         - { role: username.rolename, x: 42 }
+        - zimbra
 
 License
 -------

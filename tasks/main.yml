@@ -38,12 +38,17 @@
 #        repo: https://github.com/jmutai/scripts.git
 #        dest: /root/scripts
 
-    - name: Execute zimbra_install_prereqs_rhel.sh script
-      shell: ./zimbra_install_prereqs_rhel.sh -s < /etc/ansible/roles/zimbra/templates/zimbra_install_prereqs
-      args:
-        chdir: /root/scripts/zimbra/
+#    - name: Execute zimbra_install_prereqs_rhel.sh script
+#      shell: ./zimbra_install_prereqs_rhel.sh -s < /etc/ansible/roles/zimbra/templates/zimbra_install_prereqs
+#      args:
+#        chdir: /root/scripts/zimbra/
 
-    - name: Execute zimbra_bind_setup_rhel.sh script
-      shell: ./zimbra_bind_setup_rhel.sh -s < /etc/ansible/roles/zimbra/templates/zimbra_install_setup
+#    - name: Execute zimbra_bind_setup_rhel.sh script
+#      shell: ./zimbra_bind_setup_rhel.sh -s < /etc/ansible/roles/zimbra/templates/zimbra_install_setup
+#      args:
+#        chdir: /root/scripts/zimbra/
+
+    - name: Execute zimbra installer script
+      shell: ./install.sh -s < /etc/ansible/roles/zimbra/templates/zimbra_install_answers
       args:
-        chdir: /root/scripts/zimbra/
+       chdir: /root/zcs-9.0.0_ZEXTRAS_20221203.RHEL8_64.20221216110429
