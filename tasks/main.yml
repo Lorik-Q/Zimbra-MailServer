@@ -29,33 +29,53 @@
         state: present
         disable_gpg_check: yes
 
+    - name: Check if script is installed
+      stat:
+        path: /root/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
+      register: script_status
+      ignore_errors: true
+
     - name: installeer de zimbra installer script
       get_url:
         url: https://download.zextras.com/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
         dest: /root
+      when: script_status.stat.exists == false
 
     - name: pak de zimbra installer script uit
       unarchive:
         src: /root/zcs-9.0.0_OSE_RHEL8_latest-zextras.tgz
         dest: /root
         remote_src: yes
+      when: script_status.stat.exists == false
+
+    - name: Check if script is installed
+      stat:
+        path: /root/scripts
+      register: script_status2
+      ignore_errors: true
 
     - name: installeer prereq script
       git:
         repo: https://github.com/jmutai/scripts.git
         dest: /root/scripts
-
+      when: script_status2.stat.exists == false
+   
     - name: Execute zimbra_install_prereqs_rhel.sh script
       shell: ./zimbra_install_prereqs_rhel.sh -s < /tmp/zimbra_install_prereqs
       args:
         chdir: /root/scripts/zimbra/
+#      when: script_status2.stat.exists == false
 
     - name: Execute zimbra_bind_setup_rhel.sh script
       shell: ./zimbra_bind_setup_rhel.sh -s < /tmp/zimbra_install_setup
       args:
         chdir: /root/scripts/zimbra/
+#      when: script_status2.stat.exists == false
 
     - name: Execute zimbra installer script
-      shell: ./install.sh -s < /tmp/zimbra_installer_antwoorden
+      shell: ./install.sh -s < /tmp/zimbra_installer_antwoorden.txt.j2
       args:
        chdir: /root/zcs-9.0.0_ZEXTRAS_20221203.RHEL8_64.20221216110429
+
+    - name: Edit zimbra conf file
+      command: /opt/zimbra/libexec/zmsetup.pl -c /tmp/zimbra_installer_config.txt.j2
