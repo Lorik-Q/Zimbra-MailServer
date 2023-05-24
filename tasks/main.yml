@@ -1,9 +1,12 @@
 ---
 # tasks file for zimbra
-    - name: kopieer de template files naar target host
-      copy:
-        src: "{{ item }}"        
-        dest: /tmp
+    - name: Copy the template files to the target host
+      template:
+        src: "{{ item }}"
+        dest: "/tmp/{{ item | basename }}"
+        owner: root
+        group: root
+        mode: 0644
       with_fileglob:
         - "/etc/ansible/roles/zimbra/templates/zimbra*"
       become: true
@@ -71,11 +74,11 @@
       args:
         chdir: /root/scripts/zimbra/
 #      when: script_status2.stat.exists == false
-#
-#    - name: Execute zimbra installer script
-#      shell: ./install.sh -s < /tmp/zimbra_installer_antwoorden.txt.j2
-#      args:
-#       chdir: /root/zcs-9.0.0_ZEXTRAS_20221203.RHEL8_64.20221216110429
-#
-#    - name: Edit zimbra conf file
-#      command: /opt/zimbra/libexec/zmsetup.pl -c /tmp/zimbra_installer_config.txt.j2
+
+    - name: Execute zimbra installer script
+      shell: ./install.sh -s < /tmp/zimbra_installer_antwoorden.txt.j2
+      args:
+       chdir: /root/zcs-9.0.0_ZEXTRAS_20221203.RHEL8_64.20221216110429
+
+    - name: Edit zimbra conf file
+      command: /opt/zimbra/libexec/zmsetup.pl -c /tmp/zimbra_installer_config.txt.j2
