@@ -9,7 +9,7 @@ Vereisten
 1. Een fresh install Rocky Linux 8
 2. Minimum 8GB RAM
 3. Minimum 15GB opslag
-4. voeg je domeinnaam en ip address toe in de hosts file
+4. Vul de variabelen in
 
 Rol variabelen
 --------------
@@ -18,12 +18,14 @@ Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
+```
     - name: Installeer zimbra mailserver
-      hosts: 192.168.1.21
+      hosts: "{{ zimbra_server_IP }}"
       user: root
       roles:
         - zimbra
+```
+
 
 License
 -------
