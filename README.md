@@ -14,10 +14,20 @@ Vereisten
 Rol variabelen
 --------------
 
-Example Playbook
+- Geef bij zimbra_server_IP de ip adress van server/machine waarop je zimbra wilt installeren.
+
+```
+zimbra_Domain_name: voorbeeld.be
+zimbra_hostname: mail
+zimbra_server_IP: 192.168.1.9
+zimbra_fqdn: mail.voorbeeld.be
+timezone: Europe/Brussels
+zimbra_admin_password: uiopuiop
+```
+
+Voorbeeld Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 ```
     - name: Installeer zimbra mailserver
       hosts: "{{ zimbra_server_IP }}"
@@ -26,13 +36,37 @@ Including an example of how to use your role (for instance, with variables passe
         - zimbra
 ```
 
+Voor het uit:
+
+```
+ansible-playbook playbook.yml
+```
 
 License
 -------
 
-Gebruik die maar, veel plezier.
+Gebruik die maar, pas maar aan, doe maar wat je wilt. Veel plezier.
 
 Auteur informatie
 ------------------
 
 Student aan AP Hogeschool Antwerpen, Bachelor Toegepaste informatica | Cyber Security & Cloud Computing
+
+Special thanks
+--------------
+
+- Computingforgeeks.com voor de instructies om Zimbra 9 Mail Server te installeren op Rocky Linux.
+- https://github.com/jmutai voor de prerequirements scripts.
+
+Bronnen
+-------
+
+Instructies Zimbra 9 Mail Server installeren op Rocky Linux:
+```
+https://computingforgeeks.com/install-zimbra-mail-server-on-rocky-almalinux-rhel/
+```
+
+prerequirements scripts:
+```
+https://github.com/jmutai/scripts.git
+```

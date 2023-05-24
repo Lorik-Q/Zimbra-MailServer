@@ -22,6 +22,12 @@
         name: chrony
         state: latest
 
+    - name: Install git
+      become: yes
+      package:
+        name: git
+        state: present
+
     - name: Zet juiste timezone
       become: true
       command: timedatectl set-timezone {{ timezone }}
