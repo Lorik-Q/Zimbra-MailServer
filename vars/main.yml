@@ -2,7 +2,7 @@
 # vars file for zimbra
 zimbra_Domain_name: lorikmailserver.be
 zimbra_hostname: mail
-zimbra_server_IP: 192.168.1.50
+zimbra_server_IP: 192.168.1.62
 zimbra_fqdn: mail.lorikmailserver.be
 timezone: Europe/Brussels
 zimbra_admin_password: uiopuiop

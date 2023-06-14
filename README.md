@@ -7,7 +7,7 @@ Vereisten
 ------------
 
 1. Een fresh install Rocky Linux 8
-2. Minimum 8GB RAM
+2. Minimum 8GB RAM (werkt ook op minder maar gaat moeizaam verlopen)
 3. Minimum 15GB opslag
 4. Vul de variabelen in
 

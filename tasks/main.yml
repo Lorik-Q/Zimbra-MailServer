@@ -88,3 +88,27 @@
 
     - name: Edit zimbra conf file
       command: /opt/zimbra/libexec/zmsetup.pl -c /tmp/zimbra_installer_config.txt.j2
+
+    - name: install zextra theme
+      command: wget download.zextras.com/zextras-theme-installer/latest/zextras-theme-centos.tgz
+      args:
+       chdir: /root
+
+    - name: Extract Zextra Theme Package
+      command: tar xvf zextras-theme-centos.tgz
+      args:
+       chdir: /root
+
+    - name: Delete line from script
+      replace:
+        path: /root/zextras-theme-installer/libs/general.sh
+        regexp: '^.*exit 2*$'
+        replace: ''
+
+    - name: Execute install script
+      shell: ./install.sh -s < /tmp/zimbra_install_zextra_theme.txt.j2
+      args:
+       chdir: /root/zextras-theme-installer
+
+    - name: Restart Zimbra Web Application
+      command: su - zimbra -c 'zmmailboxdctl restart'
