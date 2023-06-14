@@ -56,8 +56,7 @@ Special thanks
 --------------
 
 - Computingforgeeks.com voor de instructies om Zimbra 9 Mail Server te installeren op Rocky Linux.
-- https://github.com/jmutai voor de prerequirements scripts. Deze scipts maken een A record en een MX record 
-  aan. Ook passen deze scipts de firewall regels aan zodat enkel de poorten open staan die nodig zijn. 
+- https://github.com/jmutai voor de prerequirements scripts. Deze scipts maken een A record en een MX record  aan. Ook passen deze scipts de firewall regels aan     zodat enkel de poorten open staan die nodig zijn. 
   
 
 Bronnen
